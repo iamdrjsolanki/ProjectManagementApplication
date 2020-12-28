@@ -1,6 +1,8 @@
 # Project Management Application
 
-This project was created in Spring Tool Suite IDE using Spring version 5.
+This project was created in Spring Tool Suite IDE using Spring version 5 & Spring Boot 2.4.1.
+Also used Thymeleaf to design the html pages & bind data from Spring.
+Used H2 database embedded with Spring & used CRUDRepository to store & fetch data from the database.
 
 ## Development server
 
@@ -8,7 +10,6 @@ Run the app using dev server. Navigate to `http://localhost:8080/`.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
 
