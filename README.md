@@ -1,6 +1,6 @@
 # Project Management Application
 
-This project was created in Spring Tool Suite IDE using Spring version 5.
+This project was created in Spring Tool Suite IDE using Spring version 5 & Spring Boot 2.4.1.
 
 ## Development server
 
