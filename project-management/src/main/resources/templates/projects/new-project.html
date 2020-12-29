@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head th:replace="layouts :: header"></head>
+	<nav th:replace="layouts :: navBar"></nav>
 	<body>
-		<nav th:replace="layouts :: navBar"></nav>
 		<form action="/projects/save" th:object="${project}" method="POST">
 			<input type="text" placeholder="Project Name" th:field="${project.name}">
 			
@@ -13,6 +13,12 @@
 			</select>
 			
 			<textarea type="text" placeholder="Enter Project Description" th:field="${project.description}"></textarea>
+			
+			<!-- * is used to access the object variables same as ${project.employees} -->
+			<select th:field="*{employees}" multiple="multiple">
+				<option th:each="emp : ${employeeList}" th:value="${emp.employeeId}" th:text="${emp.firstName}">
+				</option>
+			</select>
 		
 			<button class="btn btn-info col-2" type="submit">Create Project</button>
 		
