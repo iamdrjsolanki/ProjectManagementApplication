@@ -11,35 +11,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.iamdrjsolanki.pma.dao.EmployeeRepository;
-import com.iamdrjsolanki.pma.dao.ProjectRepository;
 import com.iamdrjsolanki.pma.dto.ChartData;
 import com.iamdrjsolanki.pma.dto.EmployeeProject;
-import com.iamdrjsolanki.pma.entities.Employee;
 import com.iamdrjsolanki.pma.entities.Project;
+import com.iamdrjsolanki.pma.services.EmployeeService;
+import com.iamdrjsolanki.pma.services.ProjectService;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
-	ProjectRepository proRepo;
+	ProjectService proServ;
 	
 	@Autowired
-	EmployeeRepository empRepo;
+	EmployeeService empServ;
 	
 	@GetMapping("/home")
 	public String displayHome(Model model) throws JsonProcessingException {
 		Map<String, Object> map = new HashMap<>();
 		
-		List<Project> projectList = proRepo.findAll();
+		List<Project> projectList = proServ.getAll();
 		model.addAttribute("projectList", projectList);
 		
-		List<ChartData> projectData = proRepo.getProjectStatus();
+		List<ChartData> projectData = proServ.getProjectStatus();
 		ObjectMapper objectMapper = new ObjectMapper();
 		String jsonString = objectMapper.writeValueAsString(projectData);
 		model.addAttribute("projectStatusCount", jsonString);
 		
-		List<EmployeeProject> employeeProjectCountList = empRepo.employeeProjects();
+		List<EmployeeProject> employeeProjectCountList = empServ.employeeProjects();
 		model.addAttribute("employeeProjectCountList", employeeProjectCountList);
 		
 		return "main/home";
