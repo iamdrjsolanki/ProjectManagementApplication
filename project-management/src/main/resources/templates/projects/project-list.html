@@ -7,21 +7,27 @@
 			<h3>Projects Directory</h3>
 			<hr>
 			<!--  Add New Project Button -->
-			<a th:href="@{/projects/new}"
-				class="btn btn-primary btn-sm mb-3"> 
-				New Project 
-			</a>
+			<a th:href="@{/projects/new}" class="btn btn-primary btn-sm mb-3">New Project</a>
+			<a class="btn btn-primary btn-sm mb-3" th:href=@{projects/timelines}>Project Timelines</a>
 			<table class="table table-bordered table-striped">
 				<thead class="thead-dark">
 					<tr>
 						<th>Project Name</th>
 						<th>Project Stage</th>
+						<th>Action</th>
 					</tr>
 				</thead>		
 				<tbody>
 					<tr th:each="project : ${projectList}">
 						<td th:text="${project.name}"/>
 						<td th:text="${project.stage}"/>
+						<td>
+							<a th:href="@{projects/update/(id=${project.projectId})}" class="btn btn-info btn-sm">Update</a>
+							<a th:href="@{projects/delete/(id=${project.projectId})}" class="btn btn-danger btn-sm" 
+								onclick="if(!(confirm('Are you sure you want to delete?'))) return false">
+								Delete
+							</a>
+						</td>
 					</tr>
 				</tbody>
 			</table>

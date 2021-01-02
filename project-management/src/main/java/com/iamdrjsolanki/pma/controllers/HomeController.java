@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,15 +21,18 @@ import com.iamdrjsolanki.pma.services.ProjectService;
 @Controller
 public class HomeController {
 	
+	@Value("${spring.profiles.active}")
+	private String profile;
+	
 	@Autowired
 	ProjectService proServ;
 	
 	@Autowired
 	EmployeeService empServ;
 	
-	@GetMapping("/home")
-	public String displayHome(Model model) throws JsonProcessingException {
-		Map<String, Object> map = new HashMap<>();
+	@GetMapping("/")
+	public String displayHome(Model model) throws JsonProcessingException {		
+		model.addAttribute("profile", profile);
 		
 		List<Project> projectList = proServ.getAll();
 		model.addAttribute("projectList", projectList);

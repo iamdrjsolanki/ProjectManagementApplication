@@ -3,15 +3,12 @@ package com.iamdrjsolanki.pma;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.ApplicationContext;
 
 import com.iamdrjsolanki.pma.dao.EmployeeRepository;
 import com.iamdrjsolanki.pma.dao.ProjectRepository;
-import com.iamdrjsolanki.pma.entities.Employee;
-import com.iamdrjsolanki.pma.entities.Project;
 
 @SpringBootApplication
 public class ProjectManagementApplication {
@@ -23,7 +20,15 @@ public class ProjectManagementApplication {
 	ProjectRepository proRepo;
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProjectManagementApplication.class, args);
+		ApplicationContext ctx = SpringApplication.run(ProjectManagementApplication.class, args);
+		
+//		System.out.println("Let's inspect the beans provided by Spring Boot:");
+//
+//	    String[] beanNames = ctx.getBeanDefinitionNames();
+//	    Arrays.sort(beanNames);
+//	    for (String beanName : beanNames) {
+//	        System.out.println(beanName);
+//	    }
 	}
 	
 //	@Bean
