@@ -3,13 +3,31 @@
 	<head th:replace="layouts :: header"></head>
 	<nav th:replace="layouts :: navBar"></nav>
 	<body>
-		<form action="/employees/save" th:object="${emp}" method="POST">
-			<input type="text" placeholder="Employee First Name" th:field="${emp.firstName}">
-			<input type="text" placeholder="Employee Last Name" th:field="${emp.lastName}">
-			<input type="text" placeholder="Employee Email Id" th:field="${emp.email}">
-			
-			<button class="btn btn-info col-2" type="submit">Create Employee</button>
-		</form>	
-</body>
-
+		<br>
+		<div class="container">
+			<form th:action="@{/employees/save}" th:object="${employee}" method="POST">		
+				<!-- USED FOR UPDATES -->	
+				<input type="hidden" th:field="${employee.employeeId}"/>		
+				<div class="form-group row">
+					<input type="text" placeholder="First Name" th:field="${employee.firstName}">
+					<span style="color:red" th:if="${#fields.hasErrors('firstName')}"
+						  th:errors="${employee.firstName}">
+					</span>
+				</div>		
+				<div class="form-group row">
+					<input type="text" placeholder="Last Name" th:field="${employee.lastName}">
+					<span style="color:red" th:if="${#fields.hasErrors('lastName')}"
+						  th:errors="${employee.lastName}">
+					</span>
+				</div>			
+				<div class="form-group row">
+					<input type="text" placeholder="Email Address" th:field="${employee.email}">
+					<span style="color:red" th:if="${#fields.hasErrors('email')}"
+						  th:errors="${employee.email}">
+					</span>
+				</div>			
+				<button class="btn btn-info col-2" type="submit">Enter Employee</button>
+			</form>
+		</div>
+	</body>
 </html>
